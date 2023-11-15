@@ -2,6 +2,7 @@
 using Formulario.Modelos.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using FormularioVacunacion.AccesoDAtos;
+using Formulario.AccesoDatos.Migrations;
 
 namespace FormularioVacunacion.Areas.CajaFarmacia.Controllers
 {
@@ -36,7 +37,7 @@ namespace FormularioVacunacion.Areas.CajaFarmacia.Controllers
             //farma = await _unidadTrabajo.Farmacias.Obtener(id);
             object tprueba = await _unidadTrabajo.Farmacias.Obtener(id);
 
-            ///Vacunas vacunaprueba = (Vacunas)tprueba;
+            Vacunas vacunaprueba = (Vacunas)tprueba;
 
             if (tprueba == null)
             {
