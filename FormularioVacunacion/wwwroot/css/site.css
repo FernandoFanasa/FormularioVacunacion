@@ -1,0 +1,183 @@
+/*html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}*/
+
+
+
+/* Basics */
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    color: #444;
+    -webkit-font-smoothing: antialiased;
+    background: #f0f0f0;
+}
+
+#container {
+    width: 840px;
+    height: 600px;
+    top: 50%;
+    left: 35%;
+    margin: 50px auto;
+    background: #fff;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 500px;
+}
+
+form {
+    margin: 0 auto;
+    margin-top: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.opciones-largas {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+}
+
+    .opciones-largas option {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 5px;
+    }
+
+        .opciones-largas option[title] {
+            position: relative;
+        }
+
+            .opciones-largas option[title]:hover::before {
+                position: absolute;
+                background: #f9f9f9;
+                border: 1px solid #cccccc00;
+                border-radius: 5px;
+                padding: 5px;
+                top: 100%;
+                left: 0;
+                white-space: normal;
+                z-index: 1;
+                display: block;
+                width: max-content;
+                max-width: 250px;
+            }
+
+/* Estilos para opciones cortas (sin tooltip) */
+.opciones-cortas {
+    width: 29%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+}
+
+    .opciones-cortas option {
+        position: absolute;
+        background: #f9f9f9;
+        border: 1px solid #cccccc00;
+        border-radius: 5px;
+        padding: 5px;
+        top: 100%;
+        left: 0;
+        white-space: normal;
+        z-index: 1;
+        display: block;
+        width: max-content;
+        max-width: 250px;
+    }
+/* Estilos para opciones más cortas (sin tooltip) */
+.opciones-mas-cortas {
+    width: 13%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+}
+
+    .opciones-mas-cortas option {
+        position: absolute;
+        background: #f9f9f9;
+        border: 1px solid #cccccc00;
+        border-radius: 5px;
+        padding: 5px;
+        top: 100%;
+        left: 0;
+        white-space: normal;
+        z-index: 1;
+        display: block;
+        width: max-content;
+        max-width: 250px;
+    }
+/* Estilos para opciones más cortas (sin tooltip) */
+.opciones-unicas {
+    width: 7%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+}
+
+    .opciones-unicas option {
+        position: absolute;
+        background: #f9f9f9;
+        border: 1px solid #cccccc00;
+        border-radius: 5px;
+        padding: 5px;
+        top: 100%;
+        left: 0;
+        white-space: normal;
+        z-index: 1;
+        display: block;
+        width: max-content;
+        max-width: 250px;
+    }
+
+/* Estilos para el contenedor del título */
+.titulo-container {
+    text-align: center;
+    padding: -12px 0;
+}
+
+/* Estilos para el título */
+.titulo {
+    font-weight: bold;
+}
+
+#lower {
+    position: center;
+    background: #ecf2f5;
+    width: 100%;
+    height: 69px;
+    margin-top: 20px;
+    box-shadow: inset 0 1px 1px #fff;
+    border-top: 1px solid #ccc;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
