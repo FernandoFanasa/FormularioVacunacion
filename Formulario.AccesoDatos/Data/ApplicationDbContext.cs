@@ -18,6 +18,8 @@ namespace FormularioVacunacion.AccesoDAtos.Data
         {
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            builder.Entity<Farmacia>().HasKey(x => x.IdPrimario);
         }
 
     }

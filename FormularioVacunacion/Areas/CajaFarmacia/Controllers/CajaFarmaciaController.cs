@@ -1,65 +1,90 @@
-﻿using Formulario.AccesoDatos.Repositorios.IRepositorio;
+﻿
 using Formulario.Modelos.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using FormularioVacunacion.AccesoDAtos;
-using Formulario.AccesoDatos.Migrations;
+using Formulario.AccesoDatos.MapeoFormularioVacunas;
+using Formulario.Utilidades;
+using Formulario.Modelos.ViewModels;
+using Formulario.AccesoDatos.Repositorios;
+using Formulario.AccesoDatos.MapeoFormularioVacunas.EntidadesTables;
+using Microsoft.EntityFrameworkCore;
+using System.Configuration;
+using Formulario.AccesoDatos.Querys.Interfaz;
 
 namespace FormularioVacunacion.Areas.CajaFarmacia.Controllers
 {
     [Area("CajaFarmacia")]
     public class CajaFarmaciaController : Controller
     {
-        private readonly IUnidadTrabajo _unidadTrabajo;
+        private readonly IConsulta consulta;
 
-        public CajaFarmaciaController(IUnidadTrabajo unidadTrabajo)
+        public CajaFarmaciaController(IConsulta consultas)
         {
-            _unidadTrabajo = unidadTrabajo;
+            consulta = consultas;
+            //_unidadTrabajo = unidadTrabajo;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int id)
         {
-            return View();
-        }
+            Vacunas vacunas = new Vacunas();
+            //ConsultasFormulario consultas = new ConsultasFormulario();
 
-        public async Task<IActionResult> Upsert(int id)
-        {
-            ///CajaFarmacia farma = new CajaFarmacia();
-
-            id = 2;
             if (id == 0)
             {
                 //farma.Estado = true;
                 return View("");
             }
 
-            ///string vid = id.ToString();
-            // Actualizamos Bodega
-            //farma = await _unidadTrabajo.Farmacias.Obtener(id);
-            object tprueba = await _unidadTrabajo.Farmacias.Obtener(id);
+            //object tprueba = await _unidadTrabajo.Farmacias.Obtener(id);
+            //Farmacia vacunaprueba = (Farmacia)tprueba;
 
-            Vacunas vacunaprueba = (Vacunas)tprueba;
+            vacunas = consulta.Obtener(id);
 
-            if (tprueba == null)
+
+
+            if (vacunas == null)
             {
                 return NotFound();
             }
-            return View(tprueba);
+            return View(vacunas);
+           
+        }
+
+        public async Task<IActionResult> Upsert(int id)
+        {
+            Vacunas vacunas = new Vacunas();
+            //ConsultasFormulario consultas = new ConsultasFormulario();
+
+            if (id == 0)
+            {
+                //farma.Estado = true;
+                return View("");
+            }
+
+            //object tprueba = await _unidadTrabajo.Farmacias.Obtener(id);
+            //Farmacia vacunaprueba = (Farmacia)tprueba;
+
+            vacunas = consulta.Obtener(id);
+
+
+
+            if (vacunas == null)
+            {
+                return NotFound();
+            }
+            return View(vacunas);
         }
 
         #region API
 
-        [HttpGet]
-        public async Task<IActionResult> ObtenerTodos()
-        {
-            var todos = await _unidadTrabajo.Farmacias.ObtenerTodos();
-            return Json(new { data = todos });
-        }
-
-
+        //[HttpGet]
+        //public async Task<IActionResult> ObtenerTodos()
+        //{
+        //    var todos = await _unidadTrabajo.Farmacias.ObtenerTodos();
+        //    return Json(new { data = todos });
+        //}
 
         #endregion
-
-
 
     }
 }

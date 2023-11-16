@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Formulario.AccesoDatos.Migrations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -12,10 +13,11 @@ namespace Formulario.AccesoDatos.Repositorios.IRepositorio
         Task<T> Obtener(int IdPrimario);
 
         Task<IEnumerable<T>> ObtenerTodos(Expression<Func<T, bool>> filtro = null,
-             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-             string incluirPropiedades = null,
-             bool isTracking = true
-             );
+             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,string incluirPropiedades = null,bool isTracking = true);
+
+
+
+        //Task<IEnumerable<T>> ObtenerVacunas(int IdPrimario);
 
         Task<T> ObtenerPrimero(
             Expression<Func<T, bool>> filtro = null,

@@ -10,6 +10,6 @@ namespace Formulario.AccesoDatos.Repositorios.IRepositorio
     public interface IFarmacia : IRepositorio<Farmacia>
     {
         void Actualizar(Farmacia farmacia);
-
+        
     }
 }

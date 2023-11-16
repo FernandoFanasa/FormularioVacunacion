@@ -1,4 +1,5 @@
 ﻿
+using Formulario.AccesoDatos.Migrations;
 using Formulario.AccesoDatos.Repositorios.IRepositorio;
 using FormularioVacunacion.AccesoDAtos.Data;
 using Microsoft.EntityFrameworkCore;
@@ -35,6 +36,10 @@ namespace Formulario.AccesoDatos.Repositorios
             return await dbSet.FindAsync(id);    // select * from (Solo por Id)
         }
 
+        //public async Task<T> ObtenerVacunas(int id)
+        //{
+        //    return await dbSet.FindAsync(id);    // select * from (Solo por Id)
+        //}
 
         public async Task<IEnumerable<T>> ObtenerTodos(Expression<Func<T, bool>> filtro = null,
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string incluirPropiedades = null, bool isTracking = true)
@@ -77,7 +82,7 @@ namespace Formulario.AccesoDatos.Repositorios
             {
                 foreach (var incluirProp in incluirPropiedades.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    query = query.Include(incluirProp);    //  ejemplo "Categoria,Marca"
+                    query = query.Include(incluirProp);    
                 }
             }
 
