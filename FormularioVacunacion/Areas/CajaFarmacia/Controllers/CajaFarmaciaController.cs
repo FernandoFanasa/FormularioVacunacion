@@ -10,6 +10,8 @@ using Formulario.AccesoDatos.MapeoFormularioVacunas.EntidadesTables;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 using Formulario.AccesoDatos.Querys.Interfaz;
+using Formulario.AccesoDatos.Migrations;
+//using System.Web.Mvc;
 
 namespace FormularioVacunacion.Areas.CajaFarmacia.Controllers
 {
@@ -73,6 +75,21 @@ namespace FormularioVacunacion.Areas.CajaFarmacia.Controllers
                 return NotFound();
             }
             return View(vacunas);
+        }
+
+        public JsonResult ObtenerConsulta_AJAX(int id)
+        {
+            try
+            {
+                Vacunas vacunas = new Vacunas();
+                vacunas = consulta.Obtener(id);
+
+                return Json(new { error = false, vacunas }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = true, mensaje = ex .Message }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         #region API

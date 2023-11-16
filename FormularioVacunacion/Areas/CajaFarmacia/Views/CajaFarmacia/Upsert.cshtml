@@ -1,0 +1,139 @@
+﻿@model Formulario.AccesoDatos.MapeoFormularioVacunas.EntidadesTables.Vacunas
+@{
+    ViewData["Title"] = "Upsert";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="titulo-container">
+    <h1>Campaña de Vacunación</h1>
+</div>
+
+<div id="container">
+
+    <table class="table" id="form-vacunas">
+        <div>   
+        <label for="id">Id:</label>
+        <input type="text" id="id" name="id"><br><br>
+        </div>
+        <label for="vEmpleado_conServicio">¿Actualmente eres empleado y cuentas con Servicio Médico de VITAMEDICA?</label>
+        <select id="vEmpleado_conServicio">
+        </select><br><br>
+
+        <label for="nNumEmpleado">Número de Empleado:</label>
+        <input type="text" id="nNumEmpleado" name="nNumEmpleado"><br><br>
+
+        <label for="vRegionPerteneciente">Menciona la región a la que pertences:</label>
+        <select id="vRegionPerteneciente" name="vRegionPerteneciente" class="opciones-cortas">
+            <option value="null">    </option>
+        </select><br><br>
+
+        <label for="SEDE">Elige la sede de la CDMX a la cual estariás acudiendo:</label>
+        <select id="SEDE" name="SEDE" class="opciones-largas">
+            <option value=" "> </option>
+        </select><br><br>
+
+        <label for="Asistencia">Por favor, confirma la Fecha de Asistencia a la aplicación.</label>
+        <select id="Asistencia" name="Asistencia" class="opciones-cortas">
+            <option value=" "> </option>
+        </select><br><br>
+
+        <label for="age-category">¿Cuál es tu rango de edad?</label>
+        <select id="age-category" name="age-category" class="opciones-cortas">
+            <option value=""></option>
+        </select><br><br>
+
+        <label for="InsertName">Por favor, ingresa tu Nombre (s):</label>
+        <input type="text" id="InsertName" name="InsertName"><br><br>
+
+        <label for="Lastname">Apellido Paterno:</label>
+        <input type="text" id="Lastname" name="Lastname"><br><br>
+
+        <label for="Lastname2">Apellido Materno:</label>
+        <input type="text" id="Lastname2" name="Lastname2"><br><br>
+
+        <label for="years-old">Edad:</label>
+        <input type="text" id="years-old" name="years-old"><br><br>
+
+        <label for="Sex">Sexo:</label>
+        <select id="Sex" name="Sex" class="opciones-mas-cortas">
+            <option value=""></option>
+        </select><br><br>
+
+        <label for="e-mail">Direccón de correo electrónico:</label>
+        <input type="text" id="e-mail" name="e-mail"><br><br>
+
+        <label for="phone-number">Teléfono de contacto:</label>
+        <input type="text" id="phone-number" name="phone-number"><br><br>
+
+        <label for="acompaniante">¿Consideras llevar acompñantes?</label>
+        <select id="acompaniante" name="acompaniante">
+            <option value=""></option>
+        </select><br><br>
+
+        <label for="num-acompaniantes">¿Cuántos acompañantes asistirán contigo?</label>
+        <input type="text" id="num-acompaniantes" name="num-acompaniantes"><br><br>
+
+        <label for="vacuna-aplicada">Vacuna a aplicar:</label>
+        <select type="text" id="vacuna-aplicada" name="vacuna-aplicada" class="opciones-cortas">
+            <option value=""></option>
+        </select><br><br>
+
+        <label for="costo">Se cobra:</label>
+        <select id="costo" name="costo" class="opciones-cortas">
+            <option value=""></option>
+        </select><br><br>
+
+
+        <div id="lower">
+            <a class="nav-link text-dark" asp-area="CajaFarmacia" asp-controller="CajaFarmacia" asp-action="Index">Registrar vacuna</a>
+        </div>
+
+    </table>
+</div>
+
+@*@section Scripts{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+
+    <script src="~/js/formulario.js"></script>
+}*@
+
+<script src="c:\proyectos\formulariovacunacion\formulariovacunacion\wwwroot\js\jquery-1.10.2 1.js"></script>
+<script src="c:\proyectos\formulariovacunacion\formulariovacunacion\wwwroot\js\jquery.geturlparam 1.js"></script>
+<script>
+    $(document).ready(function(){
+    
+        var parametroURL = $.getURLParam("parametroID");
+
+        if(parametroURL != null)
+        {
+            $.ajax({
+                url:"/CajaFarmacia/ObtenerConsulta_AJAX?id=" + parametroURL,
+                type:"GET",
+                contentType:"application/json;charset=utf-8",
+                dataType:"JSON",
+                cache:false,
+
+                success: function (r)
+                {
+                    if(r.error = true)
+                    {
+                        alert(r.mensaje);
+                    }
+                    else {
+                        $("#Lastname").val(r.vacunas.vAPaterno);
+                    }
+
+                },
+                error: function(error)
+                {
+                    alert(error.resposeText);
+                }
+            });
+        }
+    
+    });
+</script>
+
+
+
